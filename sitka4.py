@@ -6,7 +6,7 @@
 import csv
 from datetime import datetime
 
-infile = open('death_valley_2018_simple.csv', 'r')         # 1) file changed to death valley
+infile = open('death_valley_2018_simple.csv', 'r')         # 2) file changed to death valley
 
 csvfile = csv.reader(infile)
 
@@ -26,7 +26,7 @@ print(somedate)
 
 for row in csvfile:
     #while True:
-    try:
+    try:                                    # 1) handle error checking using try and except
         highs.append(int(row[4]))            #appending high temp
         thedate = datetime.strptime(row[2],'%Y-%m-%d')
         dates.append(thedate)                   
@@ -47,7 +47,7 @@ fig = plt.figure()
 plt.plot(dates,highs,c="red", alpha=0.5)        # alpha is for making the color tone lighter
 plt.plot(dates,lows,c="blue", alpha=0.5)
 
-plt.fill_between(dates,highs,lows,facecolor="cyan", alpha=0.5)                # 4)
+plt.fill_between(dates,highs,lows,facecolor="blue", alpha=0.2)                
 
 plt.title(" Daily and low high temperatures -2018", fontsize=16)
 plt.xlabel("", fontsize=12)
@@ -56,5 +56,4 @@ plt.tick_params(axis="both", which="major", labelsize=16)
 
 fig.autofmt_xdate()
 plt.show()
-
 
